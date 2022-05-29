@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-size: xx-large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.button{
+  font-size: xx-large;
+
+}
+.navbar {
+  width: 100%;
+  height: 10%;
+  overflow: hidden;
+  background-color: #333;
+  padding-right:100px
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 36px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.input
+ {
+  border-radius: 4px;
+  background-color: rgb(241, 241, 241,0.65);
+  border: none;
+  color: black;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 28px;
+  width: 400px;
+  height: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.input:hover
+{
+  background-color: rgb(241, 241, 241,0.9);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  width: 400px;
+  margin-top: 150px;
+  height: 400px;
+  transition: 0.5s;
+}
+
+.input span:after {
+  content: '\00bb';
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.input:hover span {
+  padding-right: 25px;
+}
+
+.input:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.button
+{
+  margin-top: 300px;
+
+  margin-left: 300px;
+}
+h3{
+  padding-left: 450px;
+
+}
+h4{
+  padding-left: 650px;
+}
+.input
+{
+  position: flex;
+  
+}
+body 
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                height: 1400px;
+                background: linear-gradient(-45deg, #008080 -40%, #ffffff 100%);
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .sticky + .contents
+             {
+  padding-top: 60px;
+
+} 
+body::-webkit-scrollbar 
+{
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT</a>
+  <div class="dropdown">
+    <button class="dropbtn">PROFILE
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">View Profile</a>
+      <a href="{% url 'home' %}">Log Out</a>
+    </div>
+  </div> 
+</div>
+<body>
+  <div>
+<h4>WELCOME!</h4>
+<h3><centre>HEY I AM YOUR MEDICAL PARTNER</h3>
+</centre></h3></div>
+<div class = button>
+<button class="input"><span>DOCTOR CONSULTATION</span></button>
+<button class="input"><span>UPDATE MEDICAL RECORD</span></button>
+<button class="input"><span>UPDATE TEST RESULTS</span></button>
+<button class="input"><span>BOOK YOUR DOCTOR</span></button>
+</div>
+</body>
+</html>

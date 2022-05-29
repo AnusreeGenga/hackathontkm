@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+                   body 
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                height: 1400px;
+                background: linear-gradient(-45deg, #008080 -40%, #ffffff 100%);
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .sticky + .contents
+             {
+  padding-top: 60px;
+
+} 
+body::-webkit-scrollbar 
+{
+    display: none;
+}
+.contents
+{
+    position: fixed;
+}
+    </style>
+</head>
+<body>
+    <div class="contents">
+    <form action="">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input">
+              <span>Username</span>
+              <label for="username"></label>
+             {{form.username}}
+            </div>
+
+            <div class="input">
+              <span>Firstname</span>
+              <label for="first_name"></label>
+             {{form.first_name}}
+            </div>
+
+            <div class="input">
+              <span>Lastname</span>
+              <label for="last_name"></label>
+             {{form.last_name}}
+            </div>
+            
+            <div class="input">
+              <span>Student ID</span>
+              <label for="sid"></label>
+<input type="text" id="sid" name="sid" >
+            </div>
+
+            <div class="input">
+              <span>Email Address</span>
+              <label for="email"></label>
+             {{form.email}}
+            </div>
+
+            <div class="input">
+              <span>Password</span>
+              <label for="password"></label>
+             {{form.password1}}
+            </div>
+
+            <div class="input">
+              <span>Confirm Password</span>
+              <label for="password"></label>
+              {{form.password2}}
+            </div>
+
+            <div class="input">
+              <span>Contact Number</span>
+              <label for="mobile_no"></label>
+<input type="number" id="num" name="num" >
+            </div>
+              <div class="remember">
+                  <label><input type="checkbox"> Remember me </label>
+              </div>
+              <div class="input">
+                <input type="submit" value="Sign up" name="submit">  
+              </div>
+        </form>
+    </form>
+</div>
+</body>
+</html>
