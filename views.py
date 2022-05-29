@@ -1,44 +1,39 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django import template
-# Create your views here.
+"""
+Views and functions for serving static files. These are only to be used during
+development, and SHOULD NOT be used in a production setting.
 
-def base(request):
-    return render(request, 'base.html')
-def signup(request):
-    return render(request, 'signup.html')
-def welcm(request):
-    return render(request, 'welcm.html')
-def dash(request):
-    return render(request, 'dash.html')
-def home(request):
-    errors=""
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        pass1 = request.POST.get('password')
+"""
+import os
+import posixpath
 
-        user = authenticate(request, username=username,password=password)
-        if user is not None:
-            login(request, user)
-            if(user.is_superuser):
-                return redirect('welcm')
-            try:
-                if(Education.objects.get(user=user)):
-                    return redirect('')
-            except Education.DoesNotExist:
-                errors="User name or password is wrong"          
-    context={'errors':errors}
-    return render(request,'home.html',context) 
-    def register(request):
-        form = CreateUserForm
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                user = form.save(commit=False)
-                user.save()
-                s=Education.objects.create(user=user,username=form.cleaned_data.get('username'),fname=form.cleaned_data.get('first_name'),lname=form.cleaned_data.get('last_name'),sid=request.POST.get('sid'),email=form.cleaned_data.get('email'),phn=request.POST.get('num'))
-                s.save()
-                messages.success(request,"Account has been successfully created")
-                return redirect('loginpage')
-            context={'form':form}
-            return render(request,'nbasystem/register.html',context)
+from django.conf import settings
+from django.contrib.staticfiles import finders
+from django.http import Http404
+from django.views import static
+
+
+def serve(request, path, insecure=False, **kwargs):
+    """
+    Serve static files below a given point in the directory structure or
+    from locations inferred from the staticfiles finders.
+
+    To use, put a URL pattern such as::
+
+        from django.contrib.staticfiles import views
+
+        path('<path:path>', views.serve)
+
+    in your URLconf.
+
+    It uses the django.views.static.serve() view to serve the found files.
+    """
+    if not settings.DEBUG and not insecure:
+        raise Http404
+    normalized_path = posixpath.normpath(path).lstrip("/")
+    absolute_path = finders.find(normalized_path)
+    if not absolute_path:
+        if path.endswith("/") or path == "":
+            raise Http404("Directory indexes are not allowed here.")
+        raise Http404("'%s' could not be found" % path)
+    document_root, path = os.path.split(absolute_path)
+    return static.serve(request, path, document_root=document_root, **kwargs)

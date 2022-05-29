@@ -1,11 +1,19 @@
-from django.urls import path
-from django.contrib.auth import views as auth_views
-from django.views.generic.base import TemplateView
-from . import views
-urlpatterns = [
-    path('',views.home, name='home'),
-    path('base/',views.base, name='base'),
-    path('welcm/',views.welcm, name='welcm'),
-    path('signup/',views.signup, name='signup'),
-    path('dash/',views.dash, name='dash')
-]
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.views import serve
+
+urlpatterns = []
+
+
+def staticfiles_urlpatterns(prefix=None):
+    """
+    Helper function to return a URL pattern for serving static files.
+    """
+    if prefix is None:
+        prefix = settings.STATIC_URL
+    return static(prefix, view=serve)
+
+
+# Only append if urlpatterns are empty
+if settings.DEBUG and not urlpatterns:
+    urlpatterns += staticfiles_urlpatterns()
